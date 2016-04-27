@@ -1,0 +1,54 @@
+// Default Variables
+$light_gray: #efe;
+$froggy: #5fcf80;
+$default_spacing: 30px;
+$default_copy_size: 14px;
+$default_header_size: 18px;
+$default_line_height: 1.4;
+$open_sans_stack: "Open Sans", Helvetica, Arial, sans-serif;
+
+// Theme
+$sidebar--bg: $light_gray;
+$sidebar--anchor-color: $froggy;
+$sidebar--padding: $default_spacing;
+$sidebar--copy: $default_copy_size $open_sans_stack;
+$sidebar--header: $default_header_size $open_sans_stack;
+
+.sidebar {
+  background-color: $sidebar--bg;
+  padding: $sidebar--padding;
+
+  &-header {
+    color: #333;
+    font: $sidebar--header;
+  }
+
+  &-copy {
+    font: $sidebar--copy;
+    margin-bottom: $default_spacing;
+  }
+
+  &-anchor {
+    color: $sidebar--anchor-color;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  .content-page & {
+    margin-left: 60px;
+  }
+
+  &-button {
+    border: solid 1px $sidebar--anchor-color;
+    color: $sidebar--anchor-color;
+    font-size: $default_copy_size;
+
+    & + & {
+      margin-left: 20px;
+    }
+  }
+}

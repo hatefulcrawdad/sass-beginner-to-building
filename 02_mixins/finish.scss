@@ -1,0 +1,70 @@
+body { padding-top: 100px; }
+
+@mixin button(
+  $bg: #5fcf80,
+  $text-color: white,
+  $padding: 5px 20px,
+  $border-radius: 100px,
+  $font-size: 14px,
+  $button-font-stack: "Helvetica, Arial, sans-serif",
+  $border-style: null,
+  $border-width: null,
+  $border-color: null,
+  $bg-hover: blue,
+  $border-hover: null,
+  $text-hover: null
+)
+{
+  text-decoration: none;
+  background-color: $bg;
+  border: $border-style $border-width $border-color;
+  border-radius: $border-radius;
+  color: $text-color;
+  padding: $padding;
+  font-family: #{$button-font-stack};
+  font-weight: bold;
+  font-size: $font-size;
+  &:hover,
+  &:focus {
+    background-color: $bg-hover;
+    border-color: $border-hover;
+    color: $text-hover;
+  }
+}
+
+@mixin breakpoint($screen) {
+  @if $screen == xs {
+    @media (max-width: 767px) { @content; }
+  }
+
+  @else if $screen == sm {
+    @media (min-width: 768px) { @content; }
+  }
+
+  @else if $screen == md {
+    @media (min-width: 992px) { @content; }
+  }
+
+  @else if $screen == lg {
+    @media (min-width: 1200px) { @content; }
+  }
+
+  @else {
+    @warn "Breakpoint mixin supports: xs, sm, md, lg";
+  }
+}
+
+.button {
+  @include button(red, $padding: 10px 30px, $font-size: 18px, $bg-hover: orange);
+  @include breakpoint(xs) {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  &-secondary {
+    @include button(transarent, $padding: 10px 30px, $font-size: 18px, $bg-hover: null, $border-style: solid, $border-width: 2px, $border-color: red, $text-color: red, $border-hover: orange, $text-hover: orange);
+    @include breakpoint(xs) {
+      display: block;
+    }
+  }
+}

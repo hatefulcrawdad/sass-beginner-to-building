@@ -1,0 +1,1138 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Workshop: Sass from Beginner to Building</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/treehouse.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+      <!-- About Me -->
+        <section class="abs-center text-center" style="margin-top: 10%">
+          <h1>Sass</h1>
+          <h2>From Beginner to Building</h2>
+          <br>
+          <h3>A Squares Conf 2016 Workshop</h3>
+          <p>
+            <a href="http://chrismdesign.com">Chris Michel</a> (<a href="http://twitter.com/hatefulcrawdad">@hatefulcrawdad</a>)
+          </p>
+          <br>
+        </section>
+
+        <section>
+          <div class="container" style="margin-top:15%">
+            <img style="vertical-align:middle; max-width: 24%; margin:4%;" src="img/treehouse.png" alt="">
+            <img class="fragment" style="vertical-align:middle; max-width: 24%; margin:0 4% 0;" src="img/sache.png" alt="">
+            <img class="fragment" style="vertical-align:middle; max-width: 24%; margin:4%" src="img/dalahorse.png" alt="">
+          </div>
+        </section>
+
+        <section>
+          <section class="abs-center text-center">
+            <h1 style="margin-top: 20%">Sass?</h1>
+          </section>
+          <section class="abs-center text-center">
+            <h2 style="margin-top: 12%">Sass: Syntactically Awesome Style Sheets</h2>
+            <p class="fragment" style="margin-top: 10%">Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.</p>
+            <a class="fragment" style="margin-top: 20px; display: block;" href="http://sass-lang.com"><em>[ http://sass-lang.com ]</em></a>
+          </section>
+          <section class="abs-center text-center">
+            <h1>Sass is a CSS Preprocessor</h1>
+            <ul>
+              <li class="fragment">Sass compiles into CSS. That’s all.</li>
+              <li class="fragment">Sass solves a lot of problems that CSS has.</li>
+              <li class="fragment">Only edit Sass files, never edit your CSS files!</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section class="abs-center text-center">
+            <h1 style="margin-top: 20%">Installing Sass</h1>
+          </section>
+          <section class="abs-center text-center">
+            <h1>Ruby</h1>
+            <ul>
+              <li class="fragment"><code>gem install sass</code></li>
+              <li class="fragment"><code>sass --watch input.scss:output.css</code></li>
+            </ul>
+          </section>
+          <section class="abs-center text-center">
+            <h1>Node</h1>
+            <ul>
+              <li class="fragment"><code>npm install node-sass</code></li>
+              <li class="fragment"><code>sass --watch input.scss:output.css</code></li>
+            </ul>
+          </section>
+          <section class="abs-center text-center">
+            <h2 style="margin-top: 20%">What are you most curious about regarding Sass?</h2>
+          </section>
+        </section>
+
+        <section>
+          <section class="abs-center text-center">
+            <h1 style="margin-top: 20%">Sass Basics</h1>
+          </section>
+          <section class="abs-center">
+            <h2 class="text-center">Syntax</h2>
+            <div class="left fragment">
+              <h2 class="syntax-label">.sass</h2>
+              <p class="small marg-top">Write less using white space instead of curly brackets and semicolons.</p>
+              <pre><code class="scss">.class
+  property: value</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <p class="small marg-top">Easiest transition from CSS, they kinda look similar.</p>
+              <pre><code class="scss">.class {
+  property: value;
+}</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Variables</h2>
+            <p class="text-center">Store values to use multiple times in your stylesheets.</p>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">// Variables
+$font-stack-sans: 'Open Sans', Arial, Helvetica, sans-serif;
+$brand-color: #5fcf80;
+
+body {
+  font-family: $font-stack-sans;
+}
+
+h1 {
+  color: $brand-color;
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">body {
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  color: #5fcf80;
+}</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Variable Abstractions</h2>
+            <p class="text-center">Reuse your default variables in a flexible way by creating “themes”.</p>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">// Default variables
+$font-stack-sans: 'Open Sans', Arial, Helvetica, sans-serif;
+$froggy: #5fcf80;
+
+// Theme
+$main--font: $font-stack-sans;
+$main--color: $froggy;
+
+body {
+  font-family: $main--font;
+}
+
+h1 {
+  color: $main--color;
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">body {
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  color: #5fcf80;
+}</code></pre>
+            </div>
+            <p class="clearfix small fragment text-center">Great for keeping things organized and usable without ever needing to change the core variables that have been setup.</p>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Nesting</h2>
+            <p class="text-center">Organize your code into logical chunks.</p>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">.panel {
+  padding: 20px;
+
+  h2 {
+    font-size: 20px;
+  }
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">.panel { padding: 20px; }
+.panel h2 { font-size: 20px; }</code></pre>
+            </div>
+            <ul class="fragment bottom-list">
+              <li class="">Nested selector appends to the parent.</li>
+              <li class="fragment">Never go more than 3 levels deep.</li>
+              <li class="fragment"> Nesting with an <code>&</code> is awesome!</li>
+            </ul>
+            <!-- <p class="clearfix small fragment text-center">&bull; Nested selector appends to the parent.</p>
+            <p class="clearfix small fragment text-center">&bull; Never go more than 3 levels deep.</p>
+            <p class="clearfix small fragment text-center">&bull; Nesting with an <code>&</code> is awesome!</p> -->
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Nesting: The Wrong Way</h2>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">.panel {
+  .sidebar {
+    .copy {
+      h2 {
+        font-size: 20px;
+      }
+    }
+  }
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">.panel .sidebar .copy h2 { font-size: 20px; }</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Nesting: The Right Way</h2>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">$froggy: #5fcf80;
+
+.panel-link {
+  color: $froggy;
+
+  &:hover,
+  &:focus {
+    color: darken($froggy, 20%)
+  }
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">.panel-link {
+  color: #5fcf80;
+}
+
+.panel-link:hover, .panel-link:focus {
+  color: #2e9a4e;
+}</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Nesting Properties</h2>
+            <p class="text-center">Save some writing by nesting namespaced properties.</p>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">$font-stack-sans: 'Open Sans', Arial, Helvetica, sans-serif;
+
+p {
+  font: {
+    family: $font-stack-sans;
+    size: 1em;
+    weight: bold;
+  }
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">p {
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+}</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center" style="margin-top: 20%">
+            <h2 class="text-center">Comments</h2>
+            <p class="fragment text-center">Sass comes with 2 types of comments</p>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Multiline Comments – <code>/* */</code></h2>
+            <ul class="fragment top-list">
+              <li>Preserved in CSS when possible (not in compressed output).</li>
+              <li class="fragment">If first letter is <code>!</code> the comment will be preserved even in compressed output.</li>
+              <li class="fragment">Can use variables and interpolation within multiline comments.</li>
+            </ul>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">$version: “1.2.3”;
+/* This is a multiline comment
+ * that has CSS generated
+ * by Awesomesauce version #{$version}. */</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">/* This is a multiline comment
+ * that has CSS generated
+ * by Awesomesauce version 1.2.3. */</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Single Line Comments – <code>//</code></h2>
+            <ul class="fragment top-list">
+              <li>Will only exist in Sass files.</li>
+              <li class="fragment">Can only be one line long.</li>
+            </ul>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">// This is a single line comment,
+// it will not show up in CSS output
+body {
+  background-color: #efe;
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">body {
+  background-color: #eeffee;
+}</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">The Ampersand – <code>&</code></h2>
+            <p class="fragment text-center">Reference the parent selector while nesting.</p>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">a {
+  property: value;
+  &:hover {
+    property: value;
+  }
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">a {
+  property: value;
+}
+a:hover {
+  property: value;
+}</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2>Nesting with Ampersands</h2>
+            <ul class="fragment">
+              <li>Don’t just transverse through markup.</li>
+              <li class="fragment">Used for pseudo selectors/elements.</li>
+              <li class="fragment">Used for BEM style selectors.</li>
+            </ul>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Trailing Ampersands - <code>.class &</code></h2>
+            <p class="text-center">Useful to keep styles grouped to an element but provide unique styling based on a parent selector.</p>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Double Ampersands - <code>& + &</code></h2>
+            <p class="text-center">Useful for adjacent selectors that share the same class name.</p>
+          </section>
+
+          <section class="abs-center" style="margin-top: 15%">
+            <p class="text-center">Exercise</p>
+            <h1 class="text-center">Ampersand</h1>
+          </section>
+
+        </section>
+
+        <section>
+          <section class="abs-center">
+            <h1 class="text-center">Getting Sassier</h1>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Extend Directive – <code>@extend</code></h2>
+            <ul class="fragment top-list">
+              <li>One class needs all the styles of another class, plus styles of its own.</li>
+              <li class="fragment">In our HTML, that means we always have to remember both classes</li>
+              <li class="fragment">The @extend directive avoids this, like so:</li>
+            </ul>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">.sidebar {
+  background-color: #efe;
+  border: solid 1px #ddd;
+}
+
+.sidebar-heavy {
+  @extend .sidebar;
+  border-width: 3px;
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">.sidebar, .sidebar-heavy {
+  background-color: #efe;
+  border: solid 1px #ddd;
+}
+
+.sidebar-heavy {
+  border-width: 3px;
+}</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Extend Variations</h2>
+            <ul class="fragment top-list">
+              <li>Use multiple extends within one selector.</li>
+              <li class="fragment">Chain extends where one selectors extends the other and then a third selector extends the 2nd one.</li>
+            </ul>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">.error {
+  border: 1px #f00;
+  background-color: #fdd;
+}
+.seriousError {
+  @extend .error;
+  border-width: 3px;
+}
+.criticalError {
+  @extend .seriousError;
+  position: fixed;
+  top: 10%;
+  bottom: 10%;
+  left: 10%;
+  right: 10%;
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">.error, .seriousError, .criticalError {
+  border: 1px #f00;
+  background-color: #fdd;
+}
+
+.seriousError, .criticalError {
+  border-width: 3px;
+}
+
+.criticalError {
+  position: fixed;
+  top: 10%;
+  bottom: 10%;
+  left: 10%;
+  right: 10%;
+}</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Extend-only Selectors</h2>
+            <ul class="fragment top-list">
+              <li>I like to call these "Placeholder Selectors".</li>
+              <li class="fragment">Sometimes you want a class this is only extended and not used in your HTML.</li>
+              <li class="fragment">They use <code>%</code> instead of <code>#</code> or <code>.</code>.</li>
+            </ul>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">%crazy-link {
+  color: blue;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.main-link {
+  @extend %crazy-link;
+}
+
+.secondary-link {
+  @extend %crazy-link;
+  background-color: #efe;
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">.main-link, .secondary-link {
+  color: blue;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.secondary-link {
+  background-color: #efe;
+}</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Function Directive – <code>@function</code></h2>
+            <ul class="fragment top-list">
+              <li>Return a value based on parameters you create.</li>
+              <li class="fragment">Great for doing math calculations that will save you time</li>
+            </ul>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">$grid-width: 40px;
+$gutter-width: 10px;
+
+@function grid-width($n) {
+  @return $n * $grid-width + ($n - 1) * $gutter-width;
+}
+
+#sidebar { width: grid-width(5); }</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">#sidebar {
+  width: 240px;
+}</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Built in Functions</h2>
+            <ul class="fragment top-list">
+              <li><a href="http://sass-lang.com/documentation/Sass/Script/Functions.html">http://sass-lang.com/documentation/Sass/Script/Functions.html</a></li>
+              <li class="fragment">RGB Functions – <code>rgba($red, $green, $blue, $alpha)</code></li>
+              <li class="fragment">HSL Functions – <code>lightness($color)</code></li>
+              <li class="fragment">Opacity Functions – <code>opacify($color, $amount)</code></li>
+              <li class="fragment">Color Functions – <code>darken($color, $amount)</code></li>
+              <li class="fragment">String Functions – <code>str-length($string)</code></li>
+              <li class="fragment">Number Functions – <code>round($number)</code></li>
+              <li class="fragment">List Functions – <code>nth($list, $n)</code></li>
+              <li class="fragment">Map Functions – <code>map-get($map, $key)</code></li>
+              <li class="fragment">Selector Functions – <code>selector-nest($selectors…)</code></li>
+              <li class="fragment">Introspection Functions – <code>feature-exists($feature)</code></li>
+            </ul>
+          </section>
+
+          <section class="abs-center" style="margin-top: 15%">
+            <h2 class="text-center">Mixin Directive</h2>
+            <p class="text-center"><code>@mixin</code> & <code>@include</code></p>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Simple Mixin</h2>
+            <ul class="fragment top-list">
+              <li>Store styles that you can repeat across different selectors in you Sass.</li>
+              <li class="fragment">Different from @extend in that it repeats the styles and doesn’t group selectors in a list.</li>
+              <li class="fragment">Use @include to declare the mixin on different selectors.</li>
+            </ul>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">@mixin mixin-name {
+  property: value;
+}
+
+div {
+  @include mixin-name;
+}
+
+a {
+  @include mixin-name;
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">div {
+  property: value;
+}
+
+a {
+  property: value;
+}</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Mixins and <code>@content</code></h2>
+            <ul class="fragment top-list">
+              <li>Create some styles and additionally be able to add on to them using @content within the mixin.</li>
+            </ul>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">@mixin mixin-name {
+  property: value;
+  @content;
+}
+
+div {
+  @include mixin-name {
+    color: red;
+  }
+}
+
+a {
+  @include mixin-name {
+    text-decoration: none;
+  }
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">div {
+  property: value;
+  color: red;
+}
+
+a {
+  property: value;
+  text-decoration: none;
+}</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Mixins with Arguments</h2>
+            <ul class="fragment top-list">
+              <li>Define certain parts of a mixin to accept arguments that you can customize each time you use a mixin.</li>
+              <li class="fragment">Arguments can be <code>false</code> or <code>null</code>.</li>
+            </ul>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">@mixin box($background: #fff, $border-radius: 4px) {
+  background: $background;
+  box-shadow: 0 2px 0 rgba(#000,.06);
+  border-radius: $border-radius;
+  position: relative;
+}
+
+.panel {
+  @include box;
+
+  &-sidebar {
+    @include box(#efe, 8px);
+  }
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">.panel {
+  background: #fff;
+  box-shadow: 0 2px 0 rgba(#000,.06);
+  border-radius: 4px;
+  position: relative;
+}
+
+.panel-sidebar {
+  background: #efe;
+  box-shadow: 0 2px 0 rgba(#000,.06);
+  border-radius: 8px;
+  position: relative;
+}</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Mixins with Arguments Lists</h2>
+            <ul class="fragment top-list">
+              <li>Pass one or multiple arguments to a certain property within a mixin.</li>
+            </ul>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">@mixin shadows($shadows...) {
+  box-shadow: $shadows;
+}
+
+.box {
+  @include shadow(0 0 1px rgba(#000, 0.15), 0 0 10px rgba(#000, 0.15));
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">.box {
+  box-shadow: 0 0 1px rgba(#000, 0.15), 0 0 10px rgba(#000, 0.15);
+}
+</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center" style="margin-top: 15%">
+            <p class="text-center">Exercise</p>
+            <h1 class="text-center">Mixins</h1>
+          </section>
+        </section>
+
+        <section>
+          <section class="abs-center text-center" style="margin-top: 10%">
+            <h1>Advanced Goodies</h1>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Lists</h2>
+            <ul class="fragment top-list">
+              <li>How Sass represents values like, <code>10px 15px 0 0</code> or <code>Helvetica, Arial, sans-serif</code>.</li>
+              <li class="fragment">Can be useful in some mixins, but maps are definitely the new hotness.</li>
+              <li class="fragment">Indexes start at 1, not 0.</li>
+              <li class="fragment">Can use <code>""</code> or spaces</li>
+            </ul>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">$cart-selectors: “.checkout”, “.remove”, “.add”;
+
+#{$cart-selectors} {
+  property: value;
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">.checkout, .remove, .add {
+  property: value;
+}</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">List Functions - <code>nth()</code></h2>
+            <ul class="fragment top-list">
+              <li>Get the nth item in a list.</li>
+              <li class="fragment"><code>nth($list, n)</code></li>
+            </ul>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">$spacing: 5px, 10px, 20px, 30px;
+
+div {
+  margin: nth($spacing, 2);
+  padding: nth($spacing, 3);
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">div {
+  margin: 10px;
+  padding: 20px;
+}</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">List Functions - <code>join()</code></h2>
+            <ul class="fragment top-list">
+              <li>Join two lists together.</li>
+              <li class="fragment"><code>join($list1, $list2)</code></li>
+            </ul>
+            <div class="fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">$list1: some strings;
+$list2: with other strings;
+
+join($list1, $list2) => some strings with other strings</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">List Functions - <code>append()</code></h2>
+            <ul class="fragment top-list">
+              <li>Append a single value onto the end of a list.</li>
+              <li class="fragment">Can choose comma or space as a separator</li>
+              <li class="fragment"><code>append($list, $value, $separator)</code></li>
+            </ul>
+            <div class="fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">join(10px 20px, 30px) => 10px 20px 30px
+join(10px 20px, 30px, comma) => 10px, 20px, 30px
+join((red, blue), green, space) => red blue green</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Maps</h2>
+            <ul class="fragment top-list">
+              <li>Maps represent an association between keys and values.</li>
+              <li class="fragment">Keys are used to look up values.</li>
+              <li class="fragment">Easy to collect values into named groups and access the groups dynamically.</li>
+              <li class="fragment">They have no direct parallel in CSS.</li>
+            </ul>
+            <div class="fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">$map: (key1: value1, key2: value2, key3: value3);</code></pre>
+            </div>
+            <ul class="fragment bottom-list">
+              <li>Must always be surrounded by parentheses.</li>
+              <li class="fragment">Must always be separated by commas.</li>
+              <li class="fragment">May only have one value associated with a given key (value may be a list)</li>
+            </ul>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Maps Function – <code>map-get()</code></h2>
+            <ul class="fragment top-list">
+              <li>Returns the value in a map associated with a given key.</li>
+              <li class="fragment"><code>map-get($map, $key)</code></li>
+            </ul>
+            <div class="fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">$map: (key1: value1, key2: value2, key3: value3);
+
+map-get($map, key1) => value1</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Maps Function – <code>map-merge()</code></h2>
+            <ul class="fragment top-list">
+              <li>Merges two maps together into a new map.</li>
+              <li class="fragment"><code>map-merge($map1, $map2)</code></li>
+            </ul>
+            <div class="fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">$map1: (key1: value1, key2: value2);
+$map2: (key3: value3, key4: value4);
+
+map-merge($map1, $map2) => $new_map: (key1: value1, key2: value2, key3: value3, key4: value4);</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Maps Function – <code>map-remove()</code></h2>
+            <ul class="fragment top-list">
+              <li>Returns a new map with keys removed.</li>
+              <li class="fragment"><code>map-remove($map, $keys...)</code></li>
+            </ul>
+            <div class="fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">$map: (key1: value1, key2: value2, key3: value3, key4: value4);
+
+map-remove($map, key1, key2) => $new_map: (key3: value3, key4: value4);</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Maps Function – <code>map-keys()</code></h2>
+            <ul class="fragment top-list">
+              <li>Returns a list of all keys in a map.</li>
+              <li class="fragment"><code>map-keys($map)</code></li>
+            </ul>
+            <div class="fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">$map: (key1: value1, key2: value2, key3: value3, key4: value4);
+
+map-keys($map) => key1, key2, key3, key4</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Maps Function – <code>map-values()</code></h2>
+            <ul class="fragment top-list">
+              <li>Returns a list of all values in a map.</li>
+              <li class="fragment"><code>map-values($map)</code></li>
+            </ul>
+            <div class="fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">$map: (key1: value1, key2: value2, key3: value3, key4: value4);
+
+map-values($map) => value1, value2, value3, value4</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center">
+            <h2 class="text-center">Loops - <code>@if</code> / <code>@else</code></h2>
+            <ul class="fragment top-list">
+              <li>Conditionally apply styles based on the expression used.</li>
+            </ul>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">$type: monster;
+p {
+  @if $type == ocean {
+    color: blue;
+  } @else if $type == matador {
+    color: red;
+  } @else if $type == monster {
+    color: green;
+  } @else {
+    color: black;
+  }
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">p {
+  color: green;
+}</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center" style="margin-top: -5%;">
+            <h2 class="text-center">Loops - <code>@for</code></h2>
+            <ul class="fragment top-list">
+              <li>Repeatedly outputs a set of styles based on a counter that increments between each output.</li>
+              <li class="fragment">Has two forms:
+                <ul>
+                  <li class="fragment"><code>@for $var from &lt;start&gt; through &lt;end&gt;</code></li>
+                  <li class="fragment">Includes everything up to the &lt;end&gt; value in the output, including the &lt;end&gt; value.</li>
+                  <li class="fragment"><code>@for $var from &lt;start&gt; to &lt;end&gt;</code></li>
+                  <li class="fragment">Includes everything up to the &lt;end&gt; value in the output, including the &lt;end&gt; value.</li>
+                </ul>
+              </li>
+            </ul>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">@for $i from 1 through 3 {
+  .item-#{$i} { width: 2em * $i; }
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">.item-1 {
+  width: 2em;
+}
+.item-2 {
+  width: 4em;
+}
+.item-3 {
+  width: 6em;
+}</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center" style="margin-top: -5%;">
+            <h2 class="text-center">Loops - <code>@each</code></h2>
+            <ul class="fragment top-list">
+              <li>The <code>@each</code> rule sets <code>$var</code> to each item in the list or map, then outputs the styles it contains using that value of <code>$var</code>.</li>
+              <li class="fragment">Usually has the form <code>@each $var in [$list or $map]</code>.</li>
+              <li class="fragment"><code>$var</code> can be any variable name.</li>
+            </ul>
+            <div class="left fragment">
+              <h2 class="syntax-label">.scss</h2>
+              <pre><code class="scss">@each $animal in puma, sea-slug, egret, salamander {
+  .#{$animal}-icon {
+    background-image: url('/images/#{$animal}.png');
+  }
+}</code></pre>
+            </div>
+            <div class="right fragment">
+              <h2 class="syntax-label">.css</h2>
+              <pre><code class="css">.puma-icon {
+  background-image: url('/images/puma.png');
+}
+.sea-slug-icon {
+  background-image: url('/images/sea-slug.png');
+}
+.egret-icon {
+  background-image: url('/images/egret.png');
+}
+.salamander-icon {
+  background-image: url('/images/salamander.png');
+}</code></pre>
+            </div>
+          </section>
+
+          <section class="abs-center" style="margin-top: -5%;">
+            <h2 class="text-center">Loops - <code>@while</code></h2>
+            <ul class="fragment top-list">
+              <li>Don’t even worry about this one. I’ve never found a real-world use for it. ;)</li>
+            </ul>
+            <div class="fragment text-center">
+              <img src="img/time-for-that.gif" />
+            </div>
+          </section>
+
+          <section class="abs-center" style="margin-top: 15%">
+            <p class="text-center">Exercise</p>
+            <h1 class="text-center">Simple Grid</h1>
+          </section>
+
+        </section>
+
+        <section>
+          <section class="abs-center text-center" style="margin-top: 10%">
+            <h1>Sassy Math &amp; Colors</h1>
+          </section>
+
+          <section>
+            <h2 class="text-center">Math Operators</h2>
+            <ul class="fragment top-list">
+              <li>Equality – <code>==</code>, <code>!=</code></li>
+              <li class="fragment">Number – <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code></li>
+              <li class="fragment">Relational – <code><</code>, <code>></code>, <code><=</code>, <code>>=</code></li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-center">Color Operators</h2>
+            <ul class="fragment top-list">
+              <li><code>darken($color, percentage)</code></li>
+              <li class="fragment"><code>lighten($color, percentage)</code></li>
+              <li class="fragment"><code>saturate($color, percentage)</code></li>
+              <li class="fragment"><code>desaturate($color, percentage)</code></li>
+              <li class="fragment"><code>mix($color1, $color2)</code></li>
+              <li class="fragment"><code>complement($color)</code></li>
+            </ul>
+          </section>
+
+          <section class="abs-center" style="margin-top: 15%">
+            <p class="text-center">Exercise</p>
+            <h1 class="text-center">Color Palette</h1>
+          </section>
+
+          <section class="abs-center" style="margin-top: 15%">
+            <p class="text-center">Exercise</p>
+            <h1 class="text-center">Topic Color Utilities</h1>
+          </section>
+        </section>
+
+        <section>
+          <section class="abs-center text-center" style="margin-top: 10%">
+            <h1>File Organization</h1>
+          </section>
+
+          <section>
+            <h2 class="text-center">Partials</h2>
+            <ul class="fragment top-list">
+              <li>Split your Sass files into smaller chunks to import into a manifest file.</li>
+              <li class="fragment">Keep things as small as you need them to be to make sense for your project.</li>
+              <li class="fragment">Use underscores when naming partials.</li>
+              <li class="fragment">Common method for splitting up Sass files in a project:</li>
+            </ul>
+          </section>
+
+          <section>
+            <pre><code class="js">stylesheets/
+|
+|-- modules/              # Common modules
+|   |-- _all.scss         # Include to get all modules
+|   |-- _utility.scss     # Module name
+|   |-- _colors.scss      # Etc...
+|   ...
+|
+|-- partials/             # Partials
+|   |-- _base.sass        # imports for all mixins + global project variables
+|   |-- _buttons.scss     # buttons
+|   |-- _figures.scss     # figures
+|   |-- _grids.scss       # grids
+|   |-- _typography.scss  # typography
+|   |-- _reset.scss       # reset
+|   ...
+|
+|-- vendor/               # CSS or Sass from other projects
+|   |-- _colorpicker.scss
+|   |-- _jquery.ui.core.scss
+|   ...
+|
+`-- main.scss             # primary Sass file</code></pre>
+          </section>
+
+          <section>
+            <h2 class="text-center">Imports – <code>@import</code></h2>
+            <ul class="fragment top-list">
+              <li>What do you do with all the partial files you’ve created?</li>
+              <li class="fragment">The very last file in the previous example was <code>main.scss</code>.
+                <ul>
+                  <li class="fragment">This is where you <code>@import</code> everything into a single manifest file.</li>
+                  <li class="fragment">You don’t need the underscores when using <code>@import</code></li>
+                  <li class="fragment">You also don’t need to specify the filetype <code>(.scss)</code></li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <pre><code class="scss">// Modules and Variables
+@import "modules/all";
+
+// Partials
+@import "partials/base";
+@import "partials/buttons";
+@import "partials/figures";
+@import "partials/grids";
+@import "partials/typography";
+@import "partials/reset";
+
+// Third-party
+@import "vendor/colorpicker";
+@import "vendor/jquery.ui.core";</code></pre>
+          </section>
+        </section>
+
+        <section>
+          <section class="abs-center text-center" style="margin-top: 10%">
+            <h1>Sassy Fun</h1>
+            <p>Creating pixel art with Sass.</p>
+          </section>
+        </section>
+
+        <section>
+          <section class="abs-center text-center" style="margin-top: 10%">
+            <h1>Thanks!</h1>
+          </section>
+        </section>
+
+      <!-- END OF SLIDES -->
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>

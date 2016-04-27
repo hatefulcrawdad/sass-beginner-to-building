@@ -1,0 +1,44 @@
+// Default Variables
+$default_spacing: 30px;
+$light_gray: #efe;
+$header_font_size: 20px;
+
+// Theme
+$sidebar--padding: $default_spacing;
+$sidebar--header-font: $header_font_size;
+
+/* Sidebar styles for pages that have them */
+.sidebar {
+  padding: $sidebar--padding;
+  background-color: $light_gray;
+
+  &-header {
+    font-size: $sidebar--header-font;
+  }
+
+  &-copy {
+    color: #333;
+  }
+
+  &-anchor {
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  .button {
+    background-color: red;
+
+    & + & {
+      margin-left: 20px;
+    }
+  }
+
+  .content-page & {
+    padding: 40px;
+    background-color: pink;
+  }
+}

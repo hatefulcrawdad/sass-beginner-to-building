@@ -1,0 +1,40 @@
+$green: #5fcf80;
+$blue: #3e89be;
+$yellow: #ffd365;
+$color_interval: 20%;
+
+@function mix_color($mix, $color, $interval: $color_interval) {
+  @return mix($mix, $color, $interval);
+}
+
+$colors: (
+  'green': (
+    tint: mix_color(white, $green),
+    base: $green,
+    shade: mix_color(black, $green)
+  ),
+  'blue': (
+    tint: mix_color(white, $blue),
+    base: $blue,
+    shade: mix_color(black, $blue)
+  ),
+  'yellow': (
+    tint: mix_color(white, $yellow),
+    base: $yellow,
+    shade: mix_color(black, $yellow)
+  )
+);
+
+@function color($color-name, $tone: base) {
+  @if map-has-key($colors, $color-name) {
+    @return map-get(map-get($colors, $color-name), $tone);
+  } @else {
+    @warn "We couldn't find #{$color-name} in the $colors map! "
+            + "Please make sure it's defined. ";
+  }
+}
+
+div {
+  background-color: color('yellow', 'shade');
+  color: color('green', 'tint');
+}

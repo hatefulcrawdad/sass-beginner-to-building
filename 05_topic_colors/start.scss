@@ -1,0 +1,18 @@
+$topics: (
+  html: #39ADD1,
+  css: #3079AB,
+  javascript: #c25975,
+  ruby: #e15258,
+  business: #F9845B,
+  wordpress: #838CC7
+);
+
+// Find topic color
+@function topic-color($key) {
+
+}
+
+// Create topic color utility classes
+@each $topic_name, $topic in $topics {
+  
+}

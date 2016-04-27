@@ -1,0 +1,66 @@
+$breakpoints: (
+  xs: 767px,
+  sm: 768px,
+  md: 992px,
+  lg: 1200px
+);
+
+$grid-width: 1200px;
+$grid-columns: 12;
+
+// Calculate grid width based on number of columns
+@function grid-width($columns, $total-columns: $grid-columns) {
+  @return percentage($columns / $total-columns);
+}
+
+// Extend-only clearfix styles
+%clearfix {
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// Breakpoint mixin using a map
+@mixin breakpoint($size) {
+  @if $size == xs {
+    @media (max-width: map-get($breakpoints, $size)) {
+      @content;
+    }
+  }
+  @else {
+    @media (min-width: map-get($breakpoints, $size)) {
+      @content;
+    }
+  }
+}
+
+// Grid row class
+.row {
+  @extend %clearfix;
+  max-width: $grid-width;
+  margin: 0 auto;
+  width: 100%;
+  @include breakpoint(xs) {
+    width: auto;
+    min-width: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+// Creating column classes
+@for $i from 1 through $grid-columns {
+  .grid-#{$i} {
+    float: left;
+    width: grid-width($i);
+
+    @include breakpoint(xs) {
+      width: 100%;
+      display: block;
+    }
+  }
+}

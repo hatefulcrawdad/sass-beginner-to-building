@@ -1,0 +1,45 @@
+@mixin button(
+  $bg: blue,
+  $padding: 5px 20px,
+  $border-style: solid,
+  $border-width: 1px,
+  $border-color: null
+) {
+  background-color: $bg;
+  padding: $padding;
+  border: $border-style $border-width $border-color;
+}
+
+@mixin breakpoint($screen) {
+  @if $screen == xs {
+    @media (max-width: 767px) { @content; }
+  }
+
+  @else if $screen == sm {
+    @media (min-width: 768px) { @content; }
+  }
+
+  @else if $screen == md {
+    @media (min-width: 992px) { @content; }
+  }
+
+  @else if $screen == lg {
+    @media (min-width: 1200px) { @content; }
+  }
+
+  @else {
+    @warn "Breakpoint mixin supports: xs, sm, md, lg";
+  }
+}
+
+.button {
+  @include button($border-color: red);
+  @include breakpoint(xs) {
+    display: block;
+    width: 100%;
+  }
+}
+
+.button-secondary {
+  @include button($padding: 10px 40px, $bg: orange, $border-width: 2px);
+}

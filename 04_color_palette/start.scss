@@ -1,0 +1,24 @@
+$green: #5fcf80;
+$blue: #3e89be;
+$yellow: #ffd365;
+
+$colors: (
+  'green': (
+
+  ),
+  'blue': (
+
+  ),
+  'yellow': (
+
+  )
+);
+
+@function color($color-name, $tone: base) {
+
+}
+
+// div {
+//   background-color: color('yellow', 'shade');
+//   color: color('green', 'tint');
+// }

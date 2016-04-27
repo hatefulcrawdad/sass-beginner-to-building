@@ -1,0 +1,28 @@
+$topics: (
+  html: #39ADD1,
+  css: #3079AB,
+  javascript: #c25975,
+  ruby: #e15258,
+  business: #F9845B,
+  wordpress: #838CC7
+);
+
+// Find topic color
+@function topic-color($key) {
+  @if map-has-key($topics, $key) {
+    @return map-get($topics, $key);
+  }
+  @warn "Unknown `#{$key}` in $topics.";
+  @return null;
+}
+
+// Create topic color utility classes
+@each $topic_name, $topic in $topics {
+  $properties: fill stroke color border-color background-color;
+
+  @each $property in $properties {
+    .add-#{$topic_name}-#{$property} {
+      #{$property}: topic-color(#{$topic_name});
+    }
+  }
+}
